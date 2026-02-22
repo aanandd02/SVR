@@ -19,18 +19,66 @@
 }
 
 .why li {
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   margin: 14px 0;
   line-height: 1.8;
   padding: 15px 20px;
   border-left: 4px solid #f39c12;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s, box-shadow 0.2s;
+  font-weight: 400;
 }
 
 .why li:hover {
   transform: translateX(5px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.12);
+}
+
+@media (min-width: 1440px) {
+  .why ul {
+    max-width: 900px;
+  }
+}
+
+@media (max-width: 768px) {
+  .why {
+    padding: 50px 15px;
+  }
+  .why h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+  }
+  .why ul {
+    padding: 0 10px;
+  }
+  .why li {
+    font-size: 1rem;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .why {
+    padding: 40px 15px;
+  }
+  .why h2 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+  }
+  .why li {
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    margin: 8px 0;
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 360px) {
+  .why li {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-left-width: 3px;
+  }
 }

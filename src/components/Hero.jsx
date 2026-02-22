@@ -3,60 +3,80 @@ import { motion } from "framer-motion";
 import Particles from "react-tsparticles";
 import "./Hero.css";
 
+const navItems = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "services", label: "Services" },
+  { id: "why", label: "Why Us" },
+  { id: "gallery", label: "Gallery" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "contact", label: "Contact" },
+];
+
+const sectionIds = navItems.map((item) => item.id);
+
 function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
 
-  // Scroll active section highlight
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
+  useEffect(() => {
     const handleScroll = () => {
-      const scrollPos = window.scrollY + 100;
-      sections.forEach((sec) => {
-        if (
-          scrollPos >= sec.offsetTop &&
-          scrollPos < sec.offsetTop + sec.offsetHeight
-        ) {
-          setActiveSection(sec.id);
+      setScrolled(window.scrollY > 50);
+
+      const scrollPos = window.scrollY + window.innerHeight / 3;
+      let currentSection = "home";
+
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && scrollPos >= el.offsetTop) {
+          currentSection = id;
         }
-      });
+      }
+
+      setActiveSection(currentSection);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section className="hero" id="home">
-      {/* ===== VIDEO BACKGROUND ===== */}
       <div className="video-background">
-        <video autoPlay loop muted playsInline>
+        <video autoPlay loop muted playsInline poster="/hero-bg.jpg">
           <source src="/hero-bg.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
         </video>
       </div>
 
-      {/* ===== PARTICLES BACKGROUND ===== */}
       <Particles
         className="particles"
         options={{
           fpsLimit: 60,
           particles: {
-            number: { value: 50 },
-            size: { value: 3 },
-            move: { enable: true, speed: 1 },
+            number: { value: 30 },
+            size: { value: { min: 1, max: 3 } },
+            move: { enable: true, speed: 0.8 },
             links: {
               enable: true,
-              distance: 120,
+              distance: 130,
               color: "#f39c12",
-              opacity: 0.3,
+              opacity: 0.2,
             },
             color: { value: "#f39c12" },
+            opacity: { value: 0.5 },
           },
+          detectRetina: true,
         }}
       />
 
-      {/* ===== NAVBAR ===== */}
-      <nav className="navbar">
+      <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <div className="logo-box">
           <img src="/Logo.png" alt="SVR Logo" className="nav-logo" />
           <div className="logo-text">
@@ -65,7 +85,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Hamburger */}
         <div
           className={`hamburger ${menuOpen ? "active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -75,29 +94,27 @@ function Hero() {
           <span></span>
         </div>
 
-        {/* Navbar Links */}
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
-          {["home", "about", "services", "why", "gallery", "contact"].map(
-            (sec) => (
-              <li key={sec}>
-                <motion.a
-                  href={`#${sec}`}
-                  className={activeSection === sec ? "active-link" : ""}
-                  onClick={() => setMenuOpen(false)}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  {sec === "why"
-                    ? "Why Us"
-                    : sec.charAt(0).toUpperCase() + sec.slice(1)}
-                </motion.a>
-              </li>
-            )
-          )}
+          {navItems.map((item) => (
+            <li key={item.id}>
+              <motion.a
+                href={`#${item.id}`}
+                className={activeSection === item.id ? "active-link" : ""}
+                onClick={() => setMenuOpen(false)}
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {item.label}
+              </motion.a>
+            </li>
+          ))}
         </ul>
       </nav>
 
-      {/* ===== HERO CONTENT ===== */}
+      {menuOpen && (
+        <div className="nav-overlay" onClick={() => setMenuOpen(false)} />
+      )}
+
       <div className="overlay">
         <motion.img
           src="/Logo.png"
@@ -133,7 +150,6 @@ function Hero() {
         </motion.a>
       </div>
 
-      {/* Scroll Down Arrow */}
       <motion.div
         className="scroll-down"
         animate={{ y: [0, 10, 0] }}

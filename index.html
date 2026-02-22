@@ -2,12 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/Logo.png" />
+    <link rel="icon" type="image/png" href="/Logo.png" />
+    <link rel="apple-touch-icon" href="/Logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>shree-vishwanath-roadways</title>
+    <title>Shree Vishwanath Roadways | Trusted Transport & Logistics in Vapi, Gujarat</title>
+    <meta name="description" content="Shree Vishwanath Roadways - Leading transport contractors & fleet owners in Vapi, Gujarat. Road, Rail & Air freight, FTL, PTL, Warehousing & Door-to-Door delivery across India." />
+    <meta name="keywords" content="transport, logistics, roadways, fleet owners, Vapi, Gujarat, FTL, PTL, warehousing, freight, trucking, delivery, Shree Vishwanath Roadways" />
+    <meta name="author" content="Shree Vishwanath Roadways" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Shree Vishwanath Roadways | Trusted Transport & Logistics" />
+    <meta property="og:description" content="Trusted transport contractors & fleet owners in Vapi, Gujarat. Safe, reliable logistics by Road, Rail & Air across India." />
+    <meta property="og:image" content="https://shree-vishwanath-roadways.onrender.com/hero-bg.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://shree-vishwanath-roadways.onrender.com/" />
+    <meta property="og:site_name" content="Shree Vishwanath Roadways" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Shree Vishwanath Roadways | Trusted Transport & Logistics" />
+    <meta name="twitter:description" content="Trusted transport contractors & fleet owners in Vapi, Gujarat. Road, Rail & Air logistics across India." />
+    <meta name="twitter:image" content="https://shree-vishwanath-roadways.onrender.com/hero-bg.jpg" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="SVR" />
+
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Noto+Serif+Devanagari:wght@600&display=swap" rel="stylesheet" />
+
+    <!-- Theme color for mobile browsers -->
+    <meta name="theme-color" content="#f39c12" />
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(regs) {
+          regs.forEach(function(r) { r.unregister(); });
+        });
+        caches.keys().then(function(names) {
+          names.forEach(function(n) { caches.delete(n); });
+        });
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

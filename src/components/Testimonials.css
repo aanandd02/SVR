@@ -1,42 +1,223 @@
 .testimonials {
-  padding: 50px 20px;
+  padding: 80px 20px;
   text-align: center;
-  background: #f9f9f9;
+  background: #fff;
 }
 
 .testimonials h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
   color: #222;
 }
 
-.review-container {
+.testimonials-subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 40px;
+}
+
+.carousel-wrapper {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
   gap: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel-track {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  min-height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .review-card {
-  background: #fff;
-  padding: 20px;
-  max-width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-  transition: transform 0.3s, box-shadow 0.3s;
+  position: absolute;
+  background: #f9f9f9;
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  max-width: 550px;
+  width: 100%;
+  opacity: 0;
+  transform: translateX(60px) scale(0.95);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
 }
 
-.review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+.review-card.active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+  position: relative;
+}
+
+.quote-icon {
+  font-size: 1.8rem;
+  color: #f39c12;
+  margin-bottom: 15px;
+  opacity: 0.6;
 }
 
 .review-card .feedback {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #444;
+  margin-bottom: 18px;
   font-style: italic;
-  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+.stars {
+  margin-bottom: 12px;
+}
+
+.star {
+  font-size: 1rem;
+  color: #ddd;
+  margin: 0 2px;
+}
+
+.star.filled {
+  color: #f39c12;
 }
 
 .review-card h4 {
-  font-weight: bold;
-  color: #333;
+  font-weight: 700;
+  color: #222;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.review-role {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.carousel-btn {
+  background: rgba(243, 156, 18, 0.1);
+  border: none;
+  color: #f39c12;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 50%;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background: #f39c12;
+  color: #fff;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #f39c12;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: #f39c12;
+  transform: scale(1.2);
+}
+
+@media (min-width: 1440px) {
+  .carousel-wrapper {
+    max-width: 800px;
+  }
+  .review-card {
+    max-width: 650px;
+    padding: 40px 35px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials {
+    padding: 50px 15px;
+  }
+  .testimonials h2 {
+    font-size: 2.2rem;
+  }
+  .testimonials-subtitle {
+    margin-bottom: 25px;
+  }
+  .carousel-wrapper {
+    gap: 10px;
+  }
+  .review-card {
+    padding: 25px 20px;
+  }
+  .carousel-btn {
+    padding: 8px;
+    font-size: 16px;
+  }
+  .carousel-track {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .testimonials {
+    padding: 40px 15px;
+  }
+  .testimonials h2 {
+    font-size: 1.8rem;
+  }
+  .testimonials-subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+  }
+  .carousel-track {
+    min-height: 280px;
+  }
+  .review-card .feedback {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .review-card {
+    padding: 18px 14px;
+  }
+  .carousel-btn {
+    padding: 6px;
+    font-size: 14px;
+  }
+  .quote-icon {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .carousel-dots {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 360px) {
+  .carousel-track {
+    min-height: 320px;
+  }
+  .review-card .feedback {
+    font-size: 0.9rem;
+  }
+  .carousel-btn {
+    padding: 5px;
+    font-size: 12px;
+  }
 }

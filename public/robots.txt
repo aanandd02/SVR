@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://shree-vishwanath-roadways.onrender.com/sitemap.xml

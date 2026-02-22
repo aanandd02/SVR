@@ -7,9 +7,52 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background: #fff;
   color: #333;
+  font-weight: 400;
+}
+
+p, li, a, span {
+  font-weight: 400;
+}
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 600;
+}
+
+h4 {
+  font-weight: 600;
+}
+
+section h2 {
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #f39c12;
+  margin: 10px auto 0;
+  border-radius: 3px;
+}
+
+::selection {
+  background: rgba(243, 156, 18, 0.3);
+  color: #222;
 }

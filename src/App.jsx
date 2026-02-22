@@ -1,30 +1,48 @@
-import React from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import "./App.css";
 import Hero from "./components/Hero";
-import About from "./components/About";
-import Services from "./components/Services";
-import WhyChooseUs from "./components/WhyChooseUs";
-import Gallery from "./components/Gallery";
-import Contact from "./components/Contact";
-import Testimonials from "./components/Testimonials";
-import WhatsAppButton from "./components/WhatsAppButton";
-import Footer from "./components/Footer";
-import ContactPopup from "./components/ContactPopup";
+import Loader from "./components/Loader";
+
+const About = lazy(() => import("./components/About"));
+const Services = lazy(() => import("./components/Services"));
+const WhyChooseUs = lazy(() => import("./components/WhyChooseUs"));
+const StatsCounter = lazy(() => import("./components/StatsCounter"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const Contact = lazy(() => import("./components/Contact"));
+const WhatsAppButton = lazy(() => import("./components/WhatsAppButton"));
+const Footer = lazy(() => import("./components/Footer"));
+const ContactPopup = lazy(() => import("./components/ContactPopup"));
+const BackToTop = lazy(() => import("./components/BackToTop"));
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2600);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div>
-      <Hero />
-      <About />
-      <Services />
-      <WhyChooseUs />
-      <Gallery />
-      <Testimonials />
-      <Contact />
-      <WhatsAppButton />
-      <ContactPopup />
-      <Footer />
-    </div>
+    <>
+      {loading && <Loader />}
+      <div>
+        <Hero />
+        <Suspense fallback={null}>
+          <About />
+          <Services />
+          <WhyChooseUs />
+          <StatsCounter />
+          <Gallery />
+          <Testimonials />
+          <Contact />
+          <WhatsAppButton />
+          <ContactPopup />
+          <BackToTop />
+          <Footer />
+        </Suspense>
+      </div>
+    </>
   );
 }
 
