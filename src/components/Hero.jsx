@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Particles from "react-tsparticles";
 import "./Hero.css";
 
+/* ================= NAV ITEMS ================= */
 const navItems = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
@@ -11,20 +12,35 @@ const navItems = [
   { id: "gallery", label: "Gallery" },
   { id: "testimonials", label: "Testimonials" },
   { id: "contact", label: "Contact" },
+
+  // ✅ ADMIN PORTAL
+  {
+    id: "admin",
+    label: "Admin Portal",
+    external: true,
+    url: "https://svr-builty.onrender.com",
+  },
 ];
 
-const sectionIds = navItems.map((item) => item.id);
+/* only internal sections for scroll tracking */
+const sectionIds = navItems
+  .filter((item) => !item.external)
+  .map((item) => item.id);
 
 function Hero() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
+  /* ===== LOCK BODY SCROLL WHEN MENU OPEN ===== */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [menuOpen]);
 
+  /* ===== SCROLL DETECTION ===== */
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -42,19 +58,26 @@ function Hero() {
       setActiveSection(currentSection);
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    return () =>
+      window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section className="hero" id="home">
+      {/* ================= VIDEO BACKGROUND ================= */}
       <div className="video-background">
         <video autoPlay loop muted playsInline poster="/hero-bg.jpg">
           <source src="/hero-bg.mp4" type="video/mp4" />
         </video>
       </div>
 
+      {/* ================= PARTICLES ================= */}
       <Particles
         className="particles"
         options={{
@@ -76,15 +99,20 @@ function Hero() {
         }}
       />
 
+      {/* ================= NAVBAR ================= */}
       <nav className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}>
         <div className="logo-box">
           <img src="/Logo.png" alt="SVR Logo" className="nav-logo" />
+
           <div className="logo-text">
             <span className="logo-main">SVR</span>
-            <span className="hindi-text">श्री जय माँ विन्ध्यवासिनी</span>
+            <span className="hindi-text">
+              श्री जय माँ विन्ध्यवासिनी
+            </span>
           </div>
         </div>
 
+        {/* ===== HAMBURGER ===== */}
         <div
           className={`hamburger ${menuOpen ? "active" : ""}`}
           onClick={() => setMenuOpen(!menuOpen)}
@@ -94,15 +122,27 @@ function Hero() {
           <span></span>
         </div>
 
+        {/* ===== NAV LINKS ===== */}
         <ul className={`nav-links ${menuOpen ? "open" : ""}`}>
           {navItems.map((item) => (
             <li key={item.id}>
               <motion.a
-                href={`#${item.id}`}
-                className={activeSection === item.id ? "active-link" : ""}
+                href={
+                  item.external
+                    ? item.url
+                    : `#${item.id}`
+                }
+                className={
+                  activeSection === item.id
+                    ? "active-link"
+                    : ""
+                }
                 onClick={() => setMenuOpen(false)}
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                }}
               >
                 {item.label}
               </motion.a>
@@ -111,10 +151,15 @@ function Hero() {
         </ul>
       </nav>
 
+      {/* ===== MOBILE OVERLAY ===== */}
       {menuOpen && (
-        <div className="nav-overlay" onClick={() => setMenuOpen(false)} />
+        <div
+          className="nav-overlay"
+          onClick={() => setMenuOpen(false)}
+        />
       )}
 
+      {/* ================= HERO CONTENT ================= */}
       <div className="overlay">
         <motion.img
           src="/Logo.png"
@@ -124,6 +169,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5 }}
         />
+
         <motion.h1
           className="title"
           initial={{ opacity: 0, y: 20 }}
@@ -132,6 +178,7 @@ function Hero() {
         >
           Shree Vishwanath Roadways
         </motion.h1>
+
         <motion.p
           className="subtitle"
           initial={{ opacity: 0 }}
@@ -140,6 +187,7 @@ function Hero() {
         >
           Trusted Transport Contractors & Fleet Owners
         </motion.p>
+
         <motion.a
           href="#contact"
           className="btn"
@@ -150,12 +198,13 @@ function Hero() {
         </motion.a>
       </div>
 
+      {/* ===== SCROLL DOWN ===== */}
       <motion.div
         className="scroll-down"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
       >
-        &#8595;
+        ↓
       </motion.div>
     </section>
   );
