@@ -1,110 +1,121 @@
-# Shree Vishwanath Roadways (SVR)
+# Shree Vishwanath Roadways (SVR) Website
 
-🚛 **Trusted Transport Contractors & Fleet Owners**
+Official marketing website for **Shree Vishwanath Roadways**, built with React + Vite.
 
-Shree Vishwanath Roadways (SVR) is a leading logistics and transport solutions provider based in Vapi, Gujarat.  
-With decades of experience, we deliver **customized, safe, and efficient transportation services** across India.
+Live URL: https://shree-vishwanath-roadways.onrender.com/
 
----
+## Project Overview
 
-## 🌐 Live Demo
-[Visit Website](https://shree-vishwanath-roadways.onrender.com/)
+This is a single-page logistics website for SVR (Vapi, Gujarat) with:
+- company introduction and service highlights
+- fleet gallery with lightbox
+- testimonial carousel
+- contact section + Google Maps embed
+- floating WhatsApp and "Get Quote" actions
+- PWA manifest + service worker based caching
 
----
+## Implemented Features
 
-## 📖 About Us
-As trusted **Fleet Owners & Transport Contractors**, SVR manages end-to-end logistics — from small parcels to full truckloads — by **Road, Rail, and Air**.  
-We ensure timely delivery, safety, and cost-effectiveness with professional expertise, modern fleet, and PAN-India connectivity.
+- Hero section with video background (`public/hero-bg.mp4`), particle animation (`react-tsparticles`), and responsive navbar section highlighting
+- external Admin Portal link: `https://svr-builty.onrender.com`
+- Lazy-loaded sections using `React.lazy` + `Suspense` for non-hero content
+- Animated stats counter on viewport intersection
+- Testimonial auto-play carousel with manual navigation
+- Gallery lightbox with next/previous controls
+- Floating inquiry popup form posting to Web3Forms API
+- Terms & Conditions and Privacy Policy modal pages in footer
+- Back-to-top button and WhatsApp quick-contact button
+- Service worker registration in production build and cache cleanup in development
 
----
+## Tech Stack
 
-## 🚀 Services We Offer
-- **Road Transportation** – Reliable nationwide deliveries with a modern fleet.  
-- **Rail Cargo** – Cost-effective freight movement for bulk consignments.  
-- **Air Freight** – Fast & secure delivery for urgent consignments.  
-- **Full Truck Load (FTL)** – Dedicated trucks ensuring faster transit.  
-- **Part Truck Load (PTL)** – Economical shared shipments with safety.  
-- **Warehousing & Distribution** – Secure storage & smooth supply chain.  
-- **Door-to-Door Delivery** – Hassle-free pickup & delivery at your location.  
+- React 19
+- Vite 7
+- Framer Motion
+- React Icons
+- `react-tsparticles` + `tsparticles`
+- Plain CSS modules/files per component
 
----
+## Folder Structure
 
-## ✅ Why Choose Us?
-- ✔️ Proven Expertise – Decades in the logistics industry.  
-- ✔️ Nationwide Network – Seamless connectivity across India.  
-- ✔️ Modern Fleet – Safe, efficient & well-maintained vehicles.  
-- ✔️ On-Time Delivery – Commitment to reliability.  
-- ✔️ Customized Solutions – Tailored logistics for client needs.  
-- ✔️ Cost-Effective – Transparent pricing & value for money.  
-- ✔️ Trusted by Clients – Long-term partnerships built on reliability.  
-
----
-
-## 🛠️ Tech Stack
-This project is built with:
-- **React + Vite** ⚛️  
-- **CSS** for styling 🎨  
-- **Node.js** (development environment)  
-
----
-
-## 📂 Project Structure
+```text
+.
+├── public/
+│   ├── sw.js
+│   ├── manifest.json
+│   ├── sitemap.xml
+│   ├── robots.txt
+│   ├── hero-bg.mp4
+│   └── Logo.png / 1.png / 2.png / 3.png / 4.png
+├── src/
+│   ├── components/
+│   ├── App.jsx
+│   ├── App.css
+│   ├── main.jsx
+│   └── index.css
+├── index.html
+├── package.json
+└── vite.config.js
 ```
 
-Shree-Vishwanath-Roadways/
-│── public/        # Static assets (images, logos)
-│── src/
-│   ├── components # React components (About, Services, Gallery, etc.)
-│   ├── App.jsx    # Main app
-│   ├── main.jsx   # Entry point
-│── .gitignore
-│── package.json
-│── vite.config.js
-│── README.md
+## Local Setup
 
-````
-
----
-
-## 🚦 Getting Started (For Developers)
-
-### 1. Clone the repository
-```bash
-git clone https://github.com/Aanandshukla02/Shree-Vishwanath-Roadways.git
-cd Shree-Vishwanath-Roadways
-````
-
-### 2. Install dependencies
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Run locally
+### 2. Configure environment (recommended)
+
+Create `.env` in project root:
+
+```bash
+VITE_WEB3FORMS_KEY=your_web3forms_access_key
+```
+
+Note: If not set, app currently uses a fallback key defined in `src/components/ContactPopup.jsx`.
+
+### 3. Run development server
 
 ```bash
 npm run dev
 ```
 
-App will start on: [http://localhost:5173](http://localhost:5173)
+Default local URL: `http://localhost:5173`
 
-### 4. Build for production
+### 4. Production build
 
 ```bash
 npm run build
 ```
 
----
+### 5. Preview production build
 
-## 📬 Contact
+```bash
+npm run preview
+```
 
-📍 **Address:** Plot No. 136-9A, Near National Plywoods, II Phase GIDC, Vapi-396195, Gujarat
-📞 **Phone:** +91-9033377799
-✉️ **Email:** [shreevishwanathroadways81@gmail.com](mailto:shreevishwanathroadways81@gmail.com)
+### 6. Lint
 
----
+```bash
+npm run lint
+```
 
-## 📜 License
+## Contact Information (From Site)
 
-© 2025 Shree Vishwanath Roadways. All Rights Reserved.
+- Address: Plot No. 136-9A, Near National Plywoods, II Phase GIDC, Vapi - 396195, Gujarat
+- Phone: +91 90333 77799
+- Email: shreevishwanathroadways@gmail.com
+- Email: shreevishwanathroadways81@gmail.com
 
+## SEO / PWA Notes
+
+- Meta tags and social tags are defined in `index.html`
+- `public/manifest.json` enables installable PWA metadata
+- `public/sw.js` precaches core assets and applies cache-first strategy
+- `public/sitemap.xml` and `public/robots.txt` are included for indexing
+
+## License
+
+This repository currently does not include a separate LICENSE file.
