@@ -2,7 +2,7 @@
 
 Official marketing website for **Shree Vishwanath Roadways**, built with React + Vite.
 
-Live URL: https://shree-vishwanath-roadways.onrender.com/
+Live URL: https://svr-1skj.onrender.com/
 
 ## Project Overview
 
@@ -105,9 +105,7 @@ npm run lint
 ## Contact Information (From Site)
 
 - Address: Plot No. 136-9A, Near National Plywoods, II Phase GIDC, Vapi - 396195, Gujarat
-- Phone: +91 90333 77799
-- Email: shreevishwanathroadways@gmail.com
-- Email: shreevishwanathroadways81@gmail.com
+- Phone and email are intentionally not listed in this README.
 
 ## SEO / PWA Notes
 
