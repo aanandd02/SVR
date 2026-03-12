@@ -18,7 +18,7 @@ const navItems = [
     id: "admin",
     label: "Admin Portal",
     external: true,
-    url: "https://svr-builty.onrender.com",
+    url: "https://svr-builty-frontend.onrender.com",
   },
 ];
 
